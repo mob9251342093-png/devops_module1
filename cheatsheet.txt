@@ -1,0 +1,23 @@
+=== Linux ===
+ls -la                    # показать все файлы
+cd /home/devops           # перейти в папку
+cat file.txt              # показать содержимое
+grep "текст" file.txt     # найти строки с текстом
+awk '{print }' file.txt # взять первую колонку
+chmod +x script.sh        # сделать скрипт исполняемым
+
+=== Git ===
+git init                  # создать репозиторий
+git add .                 # добавить все файлы
+git commit -m "текст"     # сохранить изменения
+git remote add origin URL # связать с GitHub
+git push -u origin main   # отправить на GitHub
+
+=== SSH ===
+ssh-keygen -t ed25519     # создать ключ
+cat ~/.ssh/id_ed25519.pub # показать ключ для GitHub
+
+=== Cron ===
+crontab -e                # редактировать задачи
+crontab -l                # показать задачи
+0 * * * * команда         # каждый час
