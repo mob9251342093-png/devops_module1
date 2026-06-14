@@ -1,42 +1,48 @@
-name: Check Bash Script
+cd ~/devops_notes
+cat > .github/workflows/check.yml << 'EOF'
+name: Check Bash Scripts
+
 on:
- push
-  branches: [ main ]
- pull_request:
-  Branches: [ main ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
- lint-and-test:
-   runs-on: ubuntu-latest
-     
-      steps:
-      -users: action/checkout@v4
+  lint-and-test:
+    runs-on: ubuntu-latest
 
+    steps:
+    - uses: actions/checkout@v4
 
-       names: Check bash script sytax
-       -run: |
-          for script in *.sh; do
-           if [ -f "" ]; then
-            echo "Checking "
-            bash -n ""
-           fi
-           done
+    - name: Make scripts executable
+      run: chmod +x *.sh
 
- - name: Verify scripts exist
+    - name: Check bash script syntax
+      run: |
+        for script in *.sh; do
+          if [ -f "$script" ]; then
+            echo "Checking $script"
+            bash -n "$script"
+          fi
+        done
+
+    - name: Verify scripts exist
       run: |
         test -f my_first_script.sh && echo "✅ my_first_script.sh exists"
         test -f generate_log.sh && echo "✅ generate_log.sh exists"
         test -f monitor.sh && echo "✅ monitor.sh exists"
         test -f README.md && echo "✅ README.md exists"
-    
+
     - name: Test generate_log.sh
       run: |
         ./generate_log.sh
         test -f app.log && echo "✅ app.log generated"
-        LINES=50
-        if [ 41 -eq 50 ]; then
+        LINES=$(wc -l < app.log)
+        if [ $LINES -eq 50 ]; then
           echo "✅ app.log has 50 lines"
         else
-          echo "❌ app.log has 41 lines, expected 50"
+          echo "❌ app.log has $LINES lines, expected 50"
           exit 1
         fi
+EOF
