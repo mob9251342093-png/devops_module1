@@ -1,3 +1,5 @@
+[![Check Bash Scripts](https://github.com/mob9251342093-png/devops_module1/actions/workflows/check.yml/badge.svg)](https://github.com/mob9251342093-png/devops_module1/actions/workflows/check.yml)
+
 # DevOps Module 1: Linux and Automation
 
 ## Scripts
