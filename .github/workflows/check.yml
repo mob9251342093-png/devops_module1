@@ -1,12 +1,10 @@
-cd ~/devops_notes
-cat > .github/workflows/check.yml << 'EOF'
 name: Check Bash Scripts
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   lint-and-test:
@@ -45,4 +43,3 @@ jobs:
           echo "❌ app.log has $LINES lines, expected 50"
           exit 1
         fi
-EOF
