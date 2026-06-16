@@ -10,3 +10,4 @@
 ## Команда анализа логов
 ```bash
 grep ERROR app.log | awk '{print $4}' | sort | uniq -c | sort -nr | head -5
+
